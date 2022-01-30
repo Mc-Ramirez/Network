@@ -80,9 +80,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         });
     }
 
-
     @Override
     public void onRefresh() {
+        getAllProduct();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAllProduct();
     }
 }
