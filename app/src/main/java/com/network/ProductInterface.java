@@ -5,6 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -32,4 +33,9 @@ public interface ProductInterface {
             @Field("product_price") Integer product_price,
             @Field("unit_product") String unit_product
     );
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "android_product", hasBody = true)
+    Call<PostPutDelProduct> deleteProduct(
+         @Field("product_id") String product_id);
 }

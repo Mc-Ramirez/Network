@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,10 @@ import static com.network.R.layout.bottom_sheet_menu;
 import static com.network.R.layout.test_reflow_chipgroup;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHolder> {
     public static List<Product> mProductList;
@@ -75,8 +80,30 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
                 intent_edit.putExtra("product_name", productName);
                 intent_edit.putExtra("product_price", productPrice);
                 intent_edit.putExtra("unit_product", unitProduct);
-
                 ctx.startActivity(intent_edit);
+                mBottomSheetDialog.dismiss();
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductInterface productInterface = ApiClient.getClient().create(ProductInterface.class);
+                Call<PostPutDelProduct> delProduct = productInterface.deleteProduct(
+                        productID
+                );
+                delProduct.enqueue(new Callback<PostPutDelProduct>() {
+                    @Override
+                    public void onResponse(Call<PostPutDelProduct> call, Response<PostPutDelProduct> response) {
+                        Toast.makeText(ctx, "Dato borrado correctamente", Toast.LENGTH_SHORT).show();
+                        mBottomSheetDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostPutDelProduct> call, Throwable t) {
+                        Toast.makeText(ctx, "Error al borrar un producto " + t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
