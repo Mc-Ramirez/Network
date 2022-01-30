@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
         getAllProduct();
+        swipeRefreshLayout.setOnRefreshListener(this);
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getAllProduct() {
+        swipeRefreshLayout.setRefreshing(true);
         mProductInterface = ApiClient.getClient().create(ProductInterface.class);
         Call<GetProduct> productCall = mProductInterface.getAllProduct("all");
         productCall.enqueue(new Callback<GetProduct>() {
@@ -66,15 +68,21 @@ public class MainActivity extends AppCompatActivity {
                 List<Product> productList = response.body().getListDataProduct();
                 mAdapter = new AdapterProduct(productList, MainActivity.this);
                 recyclerView.setAdapter(mAdapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<GetProduct> call, Throwable t) {
                 System.out.println("Error get Data");
                 Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
 
+    @Override
+    public void onRefresh() {
+        getAllProduct();
+    }
 }
