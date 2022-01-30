@@ -45,7 +45,7 @@
             android:id="@+id/unit_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Unidades del producto" />
+            android:hint="Unidad del producto (gr/kg)" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

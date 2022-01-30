@@ -6,6 +6,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ProductInterface {
@@ -20,6 +21,15 @@ public interface ProductInterface {
     Call<PostPutDelProduct> postProduct(
             @Field("product_name") String product_name,
             @Field("product_price") Integer product_price,
-            @Field("unit_product") String unit_name
+            @Field("unit_product") String unit_product
+    );
+
+    @FormUrlEncoded
+    @PUT("android_product")
+    Call<PostPutDelProduct> putProduct(
+            @Field("product_id_old") String product_id,
+            @Field("product_name") String product_name,
+            @Field("product_price") Integer product_price,
+            @Field("unit_product") String unit_product
     );
 }

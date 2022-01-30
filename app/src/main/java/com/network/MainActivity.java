@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
+                AddProductActivity.add_or_edit = "add";
                 startActivity(intent);
             }
         });
