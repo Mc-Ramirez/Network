@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         mLayoutManager =  new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(mAdapter);
         recyclerView.setHasFixedSize(true);
         getAllProduct();
         swipeRefreshLayout.setOnRefreshListener(this);
