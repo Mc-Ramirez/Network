@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivity(intent);
             }
         });
-
     }
 
     private void getAllProduct() {
