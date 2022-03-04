@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Network</string>
+    <string name="nombre_del_producto">Nombre del producto</string>
 </resources>

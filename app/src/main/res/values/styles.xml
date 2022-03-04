@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Network.MyPersonalTheme">
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.Network.forms">
+        <item name="colorAccent">#4CAF50</item>
+    </style>
+
+    <style name="Widget.Theme.Network.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextAppearance.Theme.Network.Alert" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">#FF0000</item>
+    </style>
+</resources>

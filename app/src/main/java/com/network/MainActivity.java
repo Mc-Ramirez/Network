@@ -23,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
-
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -31,13 +30,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     ProductInterface mProductInterface;
     EditText filterProduct;
     FloatingActionButton addProduct;
-
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         swipeRefreshLayout = findViewById(R.id.swipe_layout);
         recyclerView = findViewById(R.id.rv_product);
         filterProduct = findViewById(R.id.filter_product);
